@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DomainParked.com - 域名停靠页面</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            width: 100%;
+        }
+        
+        /* 头部样式 */
+        header {
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eaeaea;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2c3e50;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: #3498db;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav-links a {
+            color: #555;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #3498db;
+        }
+        
+        /* 主要内容区域 */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px 0;
+        }
+        
+        .domain-info {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .domain-name {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        
+        .domain-tag {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+        
+        .domain-description {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+        }
+        
+        /* 状态区域 */
+        .status-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+        }
+        
+        .status-box {
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px;
+            width: 280px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .status-box:hover {
+            transform: translateY(-5px);
+        }
+        
+        .status-icon {
+            font-size: 2.5rem;
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+        
+        .status-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .status-text {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        /* 联系区域 */
+        .contact-container {
+            background-color: #2c3e50;
+            border-radius: 12px;
+            padding: 50px;
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+        }
+        
+        .contact-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .contact-text {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .contact-email {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .contact-email:hover {
+            background-color: #2980b9;
+        }
+        
+        /* 相关域名区域 */
+        .related-domains {
+            margin-bottom: 60px;
+        }
+        
+        .related-title {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+        
+        .domain-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .domain-item {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px 25px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            font-weight: 600;
+            color: #2c3e50;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .domain-item:hover {
+            background-color: #3498db;
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background-color: #1a252f;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .domain-name {
+                font-size: 2.5rem;
+            }
+            
+            .status-container {
+                gap: 20px;
+            }
+            
+            .contact-container {
+                padding: 30px 20px;
+            }
+            
+            .nav-links {
+                margin-top: 15px;
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .domain-name {
+                font-size: 2rem;
+            }
+            
+            .domain-description {
+                font-size: 1rem;
+            }
+            
+            .status-box {
+                width: 100%;
+            }
+            
+            .contact-email {
+                display: block;
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 头部导航 -->
+        <header>
+            <a href="#" class="logo">Domain<span>Parked</span></a>
+            <div class="nav-links">
+                <a href="#status">状态</a>
+                <a href="#contact">联系</a>
+                <a href="#related">相关域名</a>
+                <a href="#about">关于</a>
+            </div>
+        </header>
+        
+        <!-- 主要内容 -->
+        <main class="main-content">
+            <!-- 域名信息 -->
+            <section class="domain-info">
+                <h1 class="domain-name">DOMAINPARKED.COM</h1>
+                <div class="domain-tag">域名待售</div>
+                <p class="domain-description">
+                    此域名目前处于停靠状态，所有者正在寻求出售或开发机会。如果您对此域名感兴趣，请通过以下联系方式
